@@ -7,13 +7,22 @@
         constructor() {
             super()
             this.state = {
-				json: '[{"name":"Foo"},{"name":"Bar"}]',
+				json: `[
+  {"name": "Foo"},
+  {"name": "Bar"}
+]`,
 				template: `<ul>
-	<li>name</li>
+  {{#each items}}
+  <li>{{name}}</li>
+  {{/each}}
 </ul>`,
 				result: ''
 			}
         }
+
+		componentDidMount() {
+			this.setState({result: this.compileResult()})
+		}
 
 		handleJSON(e) {
 			this.setState({
@@ -30,9 +39,13 @@
 		}
 
 		compileResult() {
-			const result = 'aaa'
-
-			return result
+			let json
+			try {
+				json = JSON.parse(this.state.json)
+			} catch (e) {
+				return ''
+			}
+			return Handlebars.compile(this.state.template)({items: json})
 		}
 
         render() {
