@@ -1,6 +1,6 @@
-<!doctype html>
-<html lang="ru">
-<head>
+<!DOCTYPE html>
+<html>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,33 +29,12 @@
     <meta name="msapplication-TileImage" content="/mstile-144x144.png?v=rMMKb0vWEj">
     <meta name="theme-color" content="#154489">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-</head>
-<body>
-
-<div class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <span class="navbar-brand">JTR</span>
-        </div>
-        <p class="navbar-text">JSON + Template = Result</p>
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="https://github.com/VovanR/jtr">View on GitHub</a>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div id="app">
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.28.1/react-bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-<script type="text/babel" src="scripts.js">
-</script>
-</body>
+	{% for (var css in o.htmlWebpackPlugin.files.css) { %}
+    <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">{% } %}
+  </head>
+  <body>
+    <app></app>{% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>{% } %}
+  </body>
 </html>
