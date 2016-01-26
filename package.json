@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "rimraf dist && webpack --progress --hide-modules --config build/webpack.prod.conf.js",
-    "test": "karma start build/karma.conf.js --single-run"
+    "test": "karma start build/karma.conf.js --single-run",
+    "deploy": "gh-pages-deploy"
   },
   "dependencies": {
     "vue": "^1.0.15"
@@ -47,5 +48,12 @@
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "dist",
+    "prep": [
+      "build"
+    ],
+    "noprompt": false
   }
 }
