@@ -1,28 +1,40 @@
 <template>
   <div id="app">
     <div class="section">
-      <select v-model="dataType" tabindex="1">
-        <option v-for="item in dataTypes" v-bind:value="item.value">
+      <select
+        v-model="dataType"
+        tabindex="1"
+        v-on:change="changeDataType"
+        >
+        <option
+          v-for="item in dataTypes"
+          v-bind:value="item.value"
+          >
           {{ item.name }}
         </option>
       </select>
       <textarea
         v-model="data"
-        v-on:blur="render"
         placeholder="Data"
         tabindex="0"
         ></textarea>
     </div>
 
     <div class="section">
-      <select v-model="templateEngine" tabindex="1">
-        <option v-for="item in templateEngines" v-bind:value="item.value">
+      <select
+        v-model="templateEngine"
+        tabindex="1"
+        v-on:change="changeTemplateEngine"
+        >
+        <option
+          v-for="item in templateEngines"
+          v-bind:value="item.value"
+          >
           {{ item.name }}
         </option>
       </select>
       <textarea
         v-model="template"
-        v-on:blur="render"
         placeholder="Template"
         tabindex="0"
         ></textarea>
@@ -93,7 +105,6 @@ export default {
     return {
       data: datas.json,
       template: templates.jade,
-      result: '',
       dataType: 'json',
       dataTypes: [
         {name: 'JSON', value: 'json'},
@@ -106,10 +117,18 @@ export default {
       ]
     }
   },
-  methods: {
-    render: function () {
+  computed: {
+    result: function () {
       let data = parsers[this.dataType](this.data)
-      this.result = compillers[this.templateEngine](this.template, data)
+      return compillers[this.templateEngine](this.template, data)
+    }
+  },
+  methods: {
+    changeDataType: function () {
+      console.log('changeDataType')
+    },
+    changeTemplateEngine: function () {
+      console.log('changeTemplateEngine')
     }
   }
 }
