@@ -1,7 +1,7 @@
 <template>
   <div class="copyright">
     <a href="{{ url }}" target="_blank">
-      <span>MIT&nbsp;©&nbsp;{{ name }}</span>
+      MIT&nbsp;©&nbsp;<span>{{ name }}</span>
     </a>
   </div>
 </template>
