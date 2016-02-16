@@ -13,6 +13,7 @@
           {{ item.name }}
         </option>
       </select>
+
       <textarea
         v-model="data"
         placeholder="Data"
@@ -33,6 +34,7 @@
           {{ item.name }}
         </option>
       </select>
+
       <textarea
         v-model="template"
         placeholder="Template"
@@ -48,6 +50,7 @@
         tabindex="0"
         ></textarea>
     </div>
+
     <Copyright></Copyright>
   </div>
 </template>
@@ -55,6 +58,7 @@
 <script>
 import Copyright from './components/Copyright'
 
+// Data parsers
 const parsers = {
   json: function (data) {
     try {
@@ -63,20 +67,24 @@ const parsers = {
       return ''
     }
   },
+
   yaml: function (data) {
     return window.jsyaml.load(data)
   }
 }
 
+// Template compillers
 const compillers = {
   handlebars: function (template, data) {
     return window.Handlebars.compile(template)({items: data})
   },
+
   jade: function (template, data) {
     return window.jade.render(template, {items: data})
   }
 }
 
+// Data storages
 let datas = {
   json: `[
   {"name": "Foo"},
@@ -86,6 +94,7 @@ let datas = {
 - name: Bar`
 }
 
+// Template storages
 let templates = {
   handlebars: `<ul>
   {{#each items}}
@@ -101,34 +110,45 @@ export default {
   components: {
     Copyright
   },
+
   data () {
     return {
       data: datas.json,
-      template: templates.jade,
       dataType: 'json',
       dataTypes: [
         {name: 'JSON', value: 'json'},
         {name: 'Yaml', value: 'yaml'}
       ],
+      previousDataType: 'json',
+
+      template: templates.jade,
       templateEngine: 'jade',
       templateEngines: [
         {name: 'Handlebars', value: 'handlebars'},
         {name: 'Jade', value: 'jade'}
-      ]
+      ],
+      previousTemplateEngine: 'jade'
     }
   },
+
   computed: {
     result: function () {
       let data = parsers[this.dataType](this.data)
       return compillers[this.templateEngine](this.template, data)
     }
   },
+
   methods: {
     changeDataType: function () {
-      console.log('changeDataType')
+      datas[this.previousDataType] = this.data
+      this.previousDataType = this.dataType
+      this.data = datas[this.dataType]
     },
+
     changeTemplateEngine: function () {
-      console.log('changeTemplateEngine')
+      templates[this.previousTemplateEngine] = this.template
+      this.previousTemplateEngine = this.templateEngine
+      this.template = templates[this.templateEngine]
     }
   }
 }
