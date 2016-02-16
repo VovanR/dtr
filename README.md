@@ -1,6 +1,6 @@
-# jtr
+# dtr
 
-> JSON + Template = Result
+> Data + Template = Result
 
 ## Build Setup
 

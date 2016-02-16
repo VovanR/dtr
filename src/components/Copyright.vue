@@ -11,7 +11,7 @@ export default {
   data () {
     return {
       name: 'Vladimir Rodkin',
-      url: 'https://github.com/VovanR/jtr'
+      url: 'https://github.com/VovanR/dtr'
     }
   }
 }

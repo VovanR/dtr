@@ -1,6 +1,6 @@
 {
-  "name": "jtr",
-  "description": "JSON + Template = Result",
+  "name": "dtr",
+  "description": "Data + Template = Result",
   "author": "Vladimir Rodkin <mail@vovanr.com>",
   "private": true,
   "scripts": {
