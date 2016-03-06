@@ -81,6 +81,10 @@ const compillers = {
 
   jade: function (template, data) {
     return window.jade.render(template, {items: data})
+  },
+
+  lodash: function (template, data) {
+    return window._.template(template)({items: data})
   }
 }
 
@@ -101,9 +105,16 @@ let templates = {
   <li>{{name}}</li>
   {{/each}}
 </ul>`,
+
   jade: `ul
   each item in items
-    li= item.name`
+    li= item.name`,
+
+  lodash: `<ul>
+  <% _.forEach(items, function (item) { %>
+  <li><%= item.name %></li>
+  <% }); %>
+</ul>`
 }
 
 export default {
@@ -125,7 +136,8 @@ export default {
       templateEngine: 'jade',
       templateEngines: [
         {name: 'Handlebars', value: 'handlebars'},
-        {name: 'Jade', value: 'jade'}
+        {name: 'Jade', value: 'jade'},
+        {name: 'lodash', value: 'lodash'}
       ],
       previousTemplateEngine: 'jade'
     }
