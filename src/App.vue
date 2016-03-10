@@ -43,12 +43,9 @@
     </div>
 
     <div class="section">
-      <textarea
-        v-model="result"
-        placeholder="Result"
-        readonly
-        tabindex="0"
-        ></textarea>
+      <Result
+        :model="result"
+        ></Result>
     </div>
 
     <Copyright></Copyright>
@@ -57,6 +54,7 @@
 
 <script>
 import Copyright from './components/Copyright'
+import Result from './components/Result'
 
 // Data parsers
 const parsers = {
@@ -119,7 +117,8 @@ let templates = {
 
 export default {
   components: {
-    Copyright
+    Copyright,
+    Result
   },
 
   data () {
