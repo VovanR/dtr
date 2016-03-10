@@ -1,51 +1,67 @@
 <template>
   <div id="app">
     <div class="section">
-      <select
-        v-model="dataType"
-        tabindex="1"
-        v-on:change="changeDataType"
-        >
-        <option
-          v-for="item in dataTypes"
-          v-bind:value="item.value"
-          >
-          {{ item.name }}
-        </option>
-      </select>
-
       <textarea
         v-model="data"
         placeholder="Data"
         tabindex="0"
         ></textarea>
+
+      <label class="label">
+        <span>
+          Data
+        </span>
+        <select
+          v-model="dataType"
+          tabindex="1"
+          v-on:change="changeDataType"
+          >
+          <option
+            v-for="item in dataTypes"
+            v-bind:value="item.value"
+            >
+            {{ item.name }}
+          </option>
+        </select>
+      </label>
     </div>
 
     <div class="section">
-      <select
-        v-model="templateEngine"
-        tabindex="1"
-        v-on:change="changeTemplateEngine"
-        >
-        <option
-          v-for="item in templateEngines"
-          v-bind:value="item.value"
-          >
-          {{ item.name }}
-        </option>
-      </select>
-
       <textarea
         v-model="template"
         placeholder="Template"
         tabindex="0"
         ></textarea>
+
+      <label class="label">
+        <span>
+          Template
+        </span>
+        <select
+          v-model="templateEngine"
+          tabindex="1"
+          v-on:change="changeTemplateEngine"
+          >
+          <option
+            v-for="item in templateEngines"
+            v-bind:value="item.value"
+            >
+            {{ item.name }}
+          </option>
+        </select>
+      </label>
     </div>
 
     <div class="section">
       <Result
         :model="result"
         ></Result>
+
+        <span class="label">
+          <span>
+            Result
+          </span>
+        </span>
     </div>
 
     <Copyright></Copyright>
@@ -186,10 +202,20 @@ body {
   position: relative;
 }
 
-select {
+.label {
   position: absolute;
   top: 4px;
   right: 4px;
+}
+
+.label span {
+  display: inline-block;
+  font-size: 12px;
+  color: #ccc;
+  margin-right: 5px;
+}
+
+.label select {
 }
 
 textarea {
