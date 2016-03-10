@@ -1,11 +1,10 @@
 <template>
   <div id="app">
     <div class="section">
-      <textarea
-        v-model="data"
-        placeholder="Data"
-        tabindex="0"
-        ></textarea>
+      <data-editor
+        :model.sync="data"
+        :engine="dataType"
+        ></data-editor>
 
       <label class="label">
         <span>
@@ -27,11 +26,10 @@
     </div>
 
     <div class="section">
-      <textarea
-        v-model="template"
-        placeholder="Template"
-        tabindex="0"
-        ></textarea>
+      <template-editor
+        :model.sync="template"
+        :engine="templateEngine"
+        ></template-editor>
 
       <label class="label">
         <span>
@@ -71,6 +69,8 @@
 <script>
 import Copyright from './components/Copyright'
 import Result from './components/Result'
+import DataEditor from './components/DataEditor'
+import TemplateEditor from './components/TemplateEditor'
 
 // Data parsers
 const parsers = {
@@ -134,7 +134,10 @@ let templates = {
 export default {
   components: {
     Copyright,
-    Result
+    Result,
+    // TODO: Merge DataEditor and TemplateEditor to Editor
+    DataEditor,
+    TemplateEditor
   },
 
   data () {
@@ -200,12 +203,14 @@ body {
   width: 100%;
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .label {
   position: absolute;
   top: 4px;
   right: 4px;
+  z-index: 10;
 }
 
 .label span {
@@ -216,24 +221,5 @@ body {
 }
 
 .label select {
-}
-
-textarea {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 1%;
-  resize: none;
-  border: 2px solid #fff;
-  transition: border ease .15s;
-  outline: none;
-}
-
-textarea:focus {
-  border-color: #ff3304;
-}
-
-textarea[readonly] {
-  background-color: #fbfbfb;
 }
 </style>
