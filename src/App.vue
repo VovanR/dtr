@@ -184,42 +184,37 @@ export default {
 }
 </script>
 
-<style>
-body {
-  font-family: Helvetica, sans-serif;
-  margin: 0;
-}
+<style lang="stylus">
+body
+  font-family: Helvetica, sans-serif
+  margin: 0
 
-#app {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
+#app
+  display: flex
+  justify-content: center
+  width: 100%
+  height: 100%
+  position: absolute
 
-.section {
-  flex: 1;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
+.section
+  flex: 1
+  width: 100%
+  height: 100%
+  position: relative
+  overflow: hidden
 
-.label {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  z-index: 10;
-}
+.label
+  position: absolute
+  top: 4px
+  right: 4px
+  z-index: 10
 
-.label span {
-  display: inline-block;
-  font-size: 12px;
-  color: #ccc;
-  margin-right: 5px;
-}
+  span
+    display: inline-block
+    font-size: 12px
+    color: #ccc
+    margin-right: 5px
 
-.label select {
-}
+  select
+    {}
 </style>

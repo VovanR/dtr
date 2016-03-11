@@ -24,19 +24,15 @@ export default {
 }
 </script>
 
-<style>
-.result {
-}
+<style lang="stylus">
+.result
+  .CodeMirror
+    box-sizing: border-box
+    height: 100%
+    border: 2px solid #fff
+    transition: border ease .15s
+    background-color: #fbfbfb
 
-.result .CodeMirror {
-  box-sizing: border-box;
-  height: 100%;
-  border: 2px solid #fff;
-  transition: border ease .15s;
-  background-color: #fbfbfb;
-}
-
-.result .CodeMirror-focused {
-  border-color: #ff3304;
-}
+    &-focused
+      border-color: #ff3304
 </style>

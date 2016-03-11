@@ -33,18 +33,14 @@ export default {
 }
 </script>
 
-<style>
-.data-editor {
-}
+<style lang="stylus">
+.data-editor
+  .CodeMirror
+    box-sizing: border-box
+    height: 100%
+    border: 2px solid #fff
+    transition: border ease .15s
 
-.data-editor .CodeMirror {
-  box-sizing: border-box;
-  height: 100%;
-  border: 2px solid #fff;
-  transition: border ease .15s;
-}
-
-.data-editor .CodeMirror-focused {
-  border-color: #ff3304;
-}
+    &-focused
+      border-color: #ff3304
 </style>

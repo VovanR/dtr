@@ -33,18 +33,14 @@ export default {
 }
 </script>
 
-<style>
-.template-editor {
-}
+<style lang="stylus">
+.template-editor
+  .CodeMirror
+    box-sizing: border-box
+    height: 100%
+    border: 2px solid #fff
+    transition: border ease .15s
 
-.template-editor .CodeMirror {
-  box-sizing: border-box;
-  height: 100%;
-  border: 2px solid #fff;
-  transition: border ease .15s;
-}
-
-.template-editor .CodeMirror-focused {
-  border-color: #ff3304;
-}
+    &-focused
+      border-color: #ff3304
 </style>

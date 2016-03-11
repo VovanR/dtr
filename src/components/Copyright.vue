@@ -17,21 +17,20 @@ export default {
 }
 </script>
 
-<style>
-.copyright {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  opacity: 0.4;
-}
-.copyright a {
-  display: block;
-  font-size: 100%;
-  padding: 1em;
-  text-decoration: none;
-  color: #000;
-}
-.copyright span {
-  text-decoration: underline;
-}
+<style lang="stylus">
+.copyright
+  position: absolute
+  right: 0
+  bottom: 0
+  opacity: 0.4
+
+  a
+    display: block
+    font-size: 100%
+    padding: 1em
+    text-decoration: none
+    color: #000
+
+  span
+    text-decoration: underline
 </style>
