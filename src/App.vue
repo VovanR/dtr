@@ -103,7 +103,7 @@ const compillers = {
 }
 
 // Data storages
-let datas = {
+const datas = {
   json: `[
   {"name": "Foo"},
   {"name": "Bar"}
@@ -113,7 +113,7 @@ let datas = {
 }
 
 // Template storages
-let templates = {
+const templates = {
   handlebars: `<ul>
   {{#each items}}
   <li>{{name}}</li>
@@ -163,7 +163,7 @@ export default {
 
   computed: {
     result: function () {
-      let data = parsers[this.dataType](this.data)
+      const data = parsers[this.dataType](this.data)
       return compillers[this.templateEngine](this.template, data)
     }
   },

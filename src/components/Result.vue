@@ -6,7 +6,7 @@
 export default {
   props: ['model'],
   ready: function () {
-    var _this = this
+    const _this = this
     this.$nextTick(function () {
       _this._editor = window.CodeMirror(_this.$el, {
         mode: 'htmlmixed',
