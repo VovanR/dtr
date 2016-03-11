@@ -1,15 +1,28 @@
 <template>
-  <codemirror class="data-editor"></codemirror>
+  <codemirror class="editor"></codemirror>
 </template>
 
 <script>
+const MODES = {
+  'json': 'javascript',
+  'lodash': 'simple'
+}
+
+function getMode (engine) {
+  if (MODES.hasOwnProperty(engine)) {
+    return MODES[engine]
+  }
+
+  return engine
+}
+
 export default {
   props: ['model', 'engine'],
   ready: function () {
     const _this = this
     this.$nextTick(function () {
       _this._editor = window.CodeMirror(_this.$el, {
-        mode: _this.engine === 'json' ? 'javascript' : _this.engine,
+        mode: getMode(_this.engine),
         lineNumbers: true,
         autoCloseBrackets: true,
         matchBrackets: true,
@@ -26,15 +39,14 @@ export default {
       this._editor.setValue(val)
     },
     'engine': function (val) {
-      // TODO: Mode dictionary
-      this._editor.setOption('mode', val === 'json' ? 'javascript' : val)
+      this._editor.setOption('mode', getMode(val))
     }
   }
 }
 </script>
 
 <style lang="stylus">
-.data-editor
+.editor
   .CodeMirror
     box-sizing: border-box
     height: 100%

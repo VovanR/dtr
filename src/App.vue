@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="section">
-      <data-editor
+      <Editor
         :model.sync="data"
         :engine="dataType"
-        ></data-editor>
+        ></Editor>
 
       <label class="label">
         <span>
@@ -26,10 +26,10 @@
     </div>
 
     <div class="section">
-      <template-editor
+      <Editor
         :model.sync="template"
         :engine="templateEngine"
-        ></template-editor>
+        ></Editor>
 
       <label class="label">
         <span>
@@ -69,8 +69,7 @@
 <script>
 import Copyright from './components/Copyright'
 import Result from './components/Result'
-import DataEditor from './components/DataEditor'
-import TemplateEditor from './components/TemplateEditor'
+import Editor from './components/Editor'
 
 // Data parsers
 const parsers = {
@@ -134,10 +133,8 @@ const templates = {
 export default {
   components: {
     Copyright,
-    Result,
-    // TODO: Merge DataEditor and TemplateEditor to Editor
-    DataEditor,
-    TemplateEditor
+    Editor,
+    Result
   },
 
   data () {
