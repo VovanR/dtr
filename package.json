@@ -4,6 +4,7 @@
   "author": "Vladimir Rodkin <mail@vovanr.com>",
   "private": true,
   "scripts": {
+    "start": "npm run dev",
     "dev": "node build/dev-server.js",
     "build": "rimraf dist && webpack --progress --hide-modules --config build/webpack.prod.conf.js",
     "test": "karma start build/karma.conf.js --single-run",
