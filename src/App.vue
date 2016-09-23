@@ -79,7 +79,7 @@ const compillers = {
     return window.Handlebars.compile(template)({items: data})
   },
 
-  jade: function (template, data) {
+  pug: function (template, data) {
     return window.jade.render(template, {items: data})
   }
 }
@@ -101,7 +101,7 @@ let templates = {
   <li>{{name}}</li>
   {{/each}}
 </ul>`,
-  jade: `ul
+  pug: `ul
   each item in items
     li= item.name`
 }
@@ -121,13 +121,13 @@ export default {
       ],
       previousDataType: 'json',
 
-      template: templates.jade,
-      templateEngine: 'jade',
+      template: templates.pug,
+      templateEngine: 'pug',
       templateEngines: [
         {name: 'Handlebars', value: 'handlebars'},
-        {name: 'Jade', value: 'jade'}
+        {name: 'Pug', value: 'pug'}
       ],
-      previousTemplateEngine: 'jade'
+      previousTemplateEngine: 'pug'
     }
   },
 
