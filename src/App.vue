@@ -1,54 +1,65 @@
 <template>
   <div id="app">
     <div class="section">
-      <select
-        v-model="dataType"
-        tabindex="1"
-        v-on:change="changeDataType"
-        >
-        <option
-          v-for="item in dataTypes"
-          v-bind:value="item.value"
-          >
-          {{ item.name }}
-        </option>
-      </select>
+      <Editor
+        :model.sync="data"
+        :engine="dataType"
+        ></Editor>
 
-      <textarea
-        v-model="data"
-        placeholder="Data"
-        tabindex="0"
-        ></textarea>
+      <label class="label">
+        <span>
+          Data
+        </span>
+        <select
+          v-model="dataType"
+          tabindex="1"
+          v-on:change="changeDataType"
+          >
+          <option
+            v-for="item in dataTypes"
+            v-bind:value="item.value"
+            >
+            {{ item.name }}
+          </option>
+        </select>
+      </label>
     </div>
 
     <div class="section">
-      <select
-        v-model="templateEngine"
-        tabindex="1"
-        v-on:change="changeTemplateEngine"
-        >
-        <option
-          v-for="item in templateEngines"
-          v-bind:value="item.value"
-          >
-          {{ item.name }}
-        </option>
-      </select>
+      <Editor
+        :model.sync="template"
+        :engine="templateEngine"
+        ></Editor>
 
-      <textarea
-        v-model="template"
-        placeholder="Template"
-        tabindex="0"
-        ></textarea>
+      <label class="label">
+        <span>
+          Template
+        </span>
+        <select
+          v-model="templateEngine"
+          tabindex="1"
+          v-on:change="changeTemplateEngine"
+          >
+          <option
+            v-for="item in templateEngines"
+            v-bind:value="item.value"
+            >
+            {{ item.name }}
+          </option>
+        </select>
+      </label>
     </div>
 
     <div class="section">
-      <textarea
-        v-model="result"
-        placeholder="Result"
-        readonly
-        tabindex="0"
-        ></textarea>
+      <Result
+        :model="result"
+        ></Result>
+
+        <span class="label">
+          <span>
+            Result
+          </span>
+        </span>
     </div>
 
     <Copyright></Copyright>
@@ -57,6 +68,8 @@
 
 <script>
 import Copyright from './components/Copyright'
+import Result from './components/Result'
+import Editor from './components/Editor'
 
 // Data parsers
 const parsers = {
@@ -81,11 +94,15 @@ const compillers = {
 
   pug: function (template, data) {
     return window.jade.render(template, {items: data})
+  },
+
+  lodash: function (template, data) {
+    return window._.template(template)({items: data})
   }
 }
 
 // Data storages
-let datas = {
+const datas = {
   json: `[
   {"name": "Foo"},
   {"name": "Bar"}
@@ -95,20 +112,29 @@ let datas = {
 }
 
 // Template storages
-let templates = {
+const templates = {
   handlebars: `<ul>
   {{#each items}}
   <li>{{name}}</li>
   {{/each}}
 </ul>`,
+
   pug: `ul
   each item in items
-    li= item.name`
+    li= item.name`,
+
+  lodash: `<ul>
+  <% _.forEach(items, function (item) { %>
+  <li><%= item.name %></li>
+  <% }); %>
+</ul>`
 }
 
 export default {
   components: {
-    Copyright
+    Copyright,
+    Editor,
+    Result
   },
 
   data () {
@@ -125,7 +151,8 @@ export default {
       templateEngine: 'pug',
       templateEngines: [
         {name: 'Handlebars', value: 'handlebars'},
-        {name: 'Pug', value: 'pug'}
+        {name: 'Pug', value: 'pug'},
+        {name: 'lodash', value: 'lodash'}
       ],
       previousTemplateEngine: 'pug'
     }
@@ -133,7 +160,7 @@ export default {
 
   computed: {
     result: function () {
-      let data = parsers[this.dataType](this.data)
+      const data = parsers[this.dataType](this.data)
       return compillers[this.templateEngine](this.template, data)
     }
   },
@@ -154,49 +181,37 @@ export default {
 }
 </script>
 
-<style>
-body {
-  font-family: Helvetica, sans-serif;
-  margin: 0;
-}
+<style lang="stylus">
+body
+  font-family: Helvetica, sans-serif
+  margin: 0
 
-#app {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
+#app
+  display: flex
+  justify-content: center
+  width: 100%
+  height: 100%
+  position: absolute
 
-.section {
-  flex: 1;
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
+.section
+  flex: 1
+  width: 100%
+  height: 100%
+  position: relative
+  overflow: hidden
 
-select {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-}
+.label
+  position: absolute
+  top: 4px
+  right: 4px
+  z-index: 10
 
-textarea {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 1%;
-  resize: none;
-  border: 2px solid #fff;
-  transition: border ease .15s;
-  outline: none;
-}
+  span
+    display: inline-block
+    font-size: 12px
+    color: #ccc
+    margin-right: 5px
 
-textarea:focus {
-  border-color: #ff3304;
-}
-
-textarea[readonly] {
-  background-color: #fbfbfb;
-}
+  select
+    {}
 </style>

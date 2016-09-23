@@ -4,6 +4,7 @@
   "author": "Vladimir Rodkin <mail@vovanr.com>",
   "private": true,
   "scripts": {
+    "start": "npm run dev",
     "dev": "node build/dev-server.js",
     "build": "rimraf dist && webpack --progress --hide-modules --config build/webpack.prod.conf.js",
     "test": "karma start build/karma.conf.js --single-run",
@@ -40,6 +41,7 @@
     "karma-webpack": "^1.7.0",
     "phantomjs": "^1.9.19",
     "rimraf": "^2.5.0",
+    "stylus-loader": "^1.5.1",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
