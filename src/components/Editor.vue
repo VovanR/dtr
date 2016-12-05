@@ -1,5 +1,5 @@
 <template>
-  <codemirror class="editor"></codemirror>
+  <div class="editor"></div>
 </template>
 
 <script>
@@ -18,7 +18,15 @@ function getMode (engine) {
 
 export default {
   props: ['model', 'engine'],
-  ready: function () {
+
+  data: function () {
+    return {
+      text: ''
+    }
+  },
+
+  mounted: function () {
+    this.text = this.model
     const _this = this
     this.$nextTick(function () {
       _this._editor = window.CodeMirror(_this.$el, {
@@ -30,16 +38,18 @@ export default {
       })
 
       _this._editor.on('blur', function () {
-        _this.model = _this._editor.getValue()
+        _this.$emit('change', _this._editor.getValue())
       })
     })
   },
+
   watch: {
-    'model': function (val) {
-      this._editor.setValue(val)
+    model: function (value) {
+      this._editor.setValue(value)
     },
-    'engine': function (val) {
-      this._editor.setOption('mode', getMode(val))
+
+    engine: function (value) {
+      this._editor.setOption('mode', getMode(value))
     }
   }
 }
@@ -47,6 +57,8 @@ export default {
 
 <style lang="stylus">
 .editor
+  height: 100%
+
   .CodeMirror
     box-sizing: border-box
     height: 100%

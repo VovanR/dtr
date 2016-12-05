@@ -1,11 +1,12 @@
 <template>
-  <codemirror class="result"></codemirror>
+  <div class="result"></div>
 </template>
 
 <script>
 export default {
   props: ['model'],
-  ready: function () {
+
+  mounted: function () {
     const _this = this
     this.$nextTick(function () {
       _this._editor = window.CodeMirror(_this.$el, {
@@ -16,9 +17,10 @@ export default {
       })
     })
   },
+
   watch: {
-    'model': function (val) {
-      this._editor.setValue(val)
+    model: function (value) {
+      this._editor.setValue(value)
     }
   }
 }
@@ -26,6 +28,8 @@ export default {
 
 <style lang="stylus">
 .result
+  height: 100%
+
   .CodeMirror
     box-sizing: border-box
     height: 100%

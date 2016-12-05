@@ -1,6 +1,6 @@
 <template>
   <div class="copyright">
-    <a href="{{ url }}" target="_blank">
+    <a :href="url" target="_blank">
       MIT&nbsp;©&nbsp;<span>{{ name }}</span>
     </a>
   </div>

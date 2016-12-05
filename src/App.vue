@@ -2,14 +2,16 @@
   <div id="app">
     <div class="section">
       <Editor
-        :model.sync="data"
+        :model="data"
         :engine="dataType"
+        v-on:change="changeData"
         ></Editor>
 
       <label class="label">
         <span>
           Data
         </span>
+
         <select
           v-model="dataType"
           tabindex="1"
@@ -29,12 +31,14 @@
       <Editor
         :model.sync="template"
         :engine="templateEngine"
+        v-on:change="changeTemplate"
         ></Editor>
 
       <label class="label">
         <span>
           Template
         </span>
+
         <select
           v-model="templateEngine"
           tabindex="1"
@@ -166,10 +170,18 @@ export default {
   },
 
   methods: {
+    changeData: function (value) {
+      this.data = value
+    },
+
     changeDataType: function () {
       datas[this.previousDataType] = this.data
       this.previousDataType = this.dataType
       this.data = datas[this.dataType]
+    },
+
+    changeTemplate: function (value) {
+      this.template = value
     },
 
     changeTemplateEngine: function () {
