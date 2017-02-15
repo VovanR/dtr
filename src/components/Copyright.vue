@@ -1,9 +1,12 @@
 <template>
-  <div class="copyright">
-    <a :href="url" target="_blank">
-      MIT&nbsp;©&nbsp;<span>{{ name }}</span>
-    </a>
-  </div>
+  <a
+    class="copyright"
+    :href="url"
+    target="_blank"
+    rel="noopener noreferrer"
+    >
+    <span class="copyright__license">MIT ©</span> <span class="copyright__author">{{ name }}</span>
+  </a>
 </template>
 
 <script>
@@ -11,31 +14,37 @@ export default {
   data () {
     return {
       name: 'Vladimir Rodkin',
-      url: 'https://github.com/VovanR/dtr'
+      url: 'https://github.com/vovanr/dtr'
     }
   }
 }
 </script>
 
-<style lang="stylus">
-.copyright
-  position: absolute
-  right: 0
-  bottom: 0
-  opacity: 0.4
-  font-family: monospace
-  transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1)
+<style>
+.copyright {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  opacity: 0.4;
+  font-family: monospace;
+  background-color: #fff;
+  transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 100%;
+  padding: 1em;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap;
+}
 
-  &:hover
-    opacity: 1
+.copyright:hover {
+  opacity: 1;
+  text-decoration: none;
+}
 
-  a
-    display: block
-    font-size: 100%
-    padding: 1em
-    text-decoration: none
-    color: #000
+.copyright__license {
+}
 
-  span
-    text-decoration: underline
+.copyright__author {
+  text-decoration: underline;
+}
 </style>

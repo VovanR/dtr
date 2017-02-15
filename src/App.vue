@@ -226,4 +226,10 @@ body
 
   select
     {}
+
+.copyright
+  border-right: 2px solid transparent
+  border-bottom: 2px solid transparent
+  background-clip: padding-box
+  z-index: 10
 </style>
