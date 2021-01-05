@@ -1,24 +1,35 @@
 # dtr
 
+[![Dependency Status][depstat-image]][depstat-url]
+[![DevDependency Status][depstat-dev-image]][depstat-dev-url]
+
 > Data + Template = Result
 
-## Build Setup
+Demo: [vovanr.github.io/dtr][demo]
 
-``` bash
-# install dependencies
+## Development
+
+```shell
 npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+```shell
+npm start
+```
+
+## Build
+
+```shell
+npm run build
+```
+
+## License
+MIT © [Vladimir Rodkin](https://github.com/VovanR)
+
+[demo]: https://vovanr.github.io/dtr
+
+[depstat-url]: https://david-dm.org/VovanR/dtr
+[depstat-image]: https://david-dm.org/VovanR/dtr.svg?style=flat-square
+
+[depstat-dev-url]: https://david-dm.org/VovanR/dtr
+[depstat-dev-image]: https://david-dm.org/VovanR/dtr/dev-status.svg?style=flat-square
